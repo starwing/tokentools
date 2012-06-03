@@ -1,5 +1,5 @@
 #define TT_CORE
-#include <lexer/tt.h>
+#include <ttlexer.h>
 
 #undef ttL_buffer
 #undef ttL_bufflen

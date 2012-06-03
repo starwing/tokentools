@@ -2,7 +2,7 @@
 #define lua_tokens_h
 
 
-#include <lexer/tt.h>
+#include <ttlexer.h>
 
 
 #define lua_tokens \
@@ -44,7 +44,7 @@ enum TTL_LUA_RESERVED {
 #define X(a, b) TTK_ ## a,
     lua_tokens
 #undef X
-    TTK_LUA_AFTER_RESERVED,
+    TTK_LUA_AFTER_RESERVED
 };
 
 #define TTK_LUA_NUM_RESERVED (TTK_WHILE-TTK_FIRST_REVERSED+1)
@@ -54,6 +54,7 @@ typedef struct {
     int decpoint;
 } lua_Lexer;
 
-TT_LIBAPI tt_LexerReg *tt_lexer_lua(void);
+TT_LIBAPI int tt_lexer_lua(tt_State *S);
+TT_LIBAPI int tt_lexer_lua_init (lua_Lexer *L, tt_Reader *reader, void *ud);
 
 #endif /* lua_tokens_h */

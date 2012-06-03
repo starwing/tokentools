@@ -14,11 +14,6 @@
 #define TTK_FIRST_REVERSED (TTK_FIRST_TOKEN+10)
 
 
-typedef struct tt_State tt_State;
-typedef struct tt_Token tt_Token;
-typedef struct tt_Lexer tt_Lexer;
-typedef struct tt_LexerReg tt_LexerReg;
-
 typedef       void *tt_Alloc  (void *ud, void *mem, size_t nsize, size_t osize);
 typedef const char *tt_Reader (tt_State *S, void *ud, size_t *sz);
 
@@ -32,11 +27,9 @@ TT_API void  tt_setuservalue (tt_State *S, void *ud);
 TT_API tt_Alloc *tt_allocf    (tt_State *S, void **ud);
 TT_API void      tt_setallocf (tt_State *S, tt_Alloc *allocf, void *ud);
 
-TT_API tt_Lexer *tt_lexer_new   (tt_State *S, const char *lexername, tt_Reader *reader, void *ud);
-TT_API void      tt_lexer_close (tt_State *S, tt_Lexer *L);
-
-TT_API int  tt_lexer_init (tt_Lexer *L, tt_LexerReg *reg, tt_Reader *reader, void *ud);
-TT_API void tt_lexer_free (tt_Lexer *L);
+TT_API tt_Lexer *tt_lexer_new      (tt_State *S, const char *lexername);
+TT_API tt_Lexer *tt_lexer_setinput (tt_State *S, tt_Lexer *L, tt_Reader *reader, void *ud);
+TT_API void      tt_lexer_close    (tt_State *S, tt_Lexer *L);
 
 TT_API tt_Lexer *tt_lexer    (tt_State *S);
 TT_API int       tt_setlexer (tt_State *S, tt_Lexer *lexer);

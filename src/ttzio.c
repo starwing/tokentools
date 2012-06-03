@@ -1,5 +1,5 @@
 #define TT_CORE
-#include <lexer/tt.h>
+#include <ttlexer.h>
 #include <ttzio.h>
 
 

@@ -51,5 +51,9 @@ typedef TT_TOKENID tt_TokenId;
 typedef TT_STRING_T tt_String;
 typedef TT_NUMBER_T tt_Number;
 typedef TT_INTEGER_T tt_Integer;
+typedef struct tt_State tt_State;
+typedef struct tt_Token tt_Token;
+typedef struct tt_Lexer tt_Lexer;
+typedef struct ttL_Reg ttL_Reg;
 
 #endif /* ttconfig_h */

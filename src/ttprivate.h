@@ -33,11 +33,11 @@ struct tt_State {
     void *ud;
     void *uservalue;
     tt_Lexer *curlexer;
-    tt_LexerReg *lexers;
+    ttL_Reg *lexers;
 };
 
 struct tt_Lexer {
-    tt_LexerReg *vt;
+    ttL_Reg *vt;
     tt_State *S;
     struct tt_Zio *z;
     int linenumber;

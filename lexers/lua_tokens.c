@@ -304,11 +304,11 @@ static int llex (tt_Lexer *L) {
   }
 }
 
-static int linitlexer(tt_Lexer *t, size_t lexersize, tt_Reader reader, void *ud) {
+static int linitlexer(tt_Lexer *t, size_t lexersize) {
     lua_Lexer *ll = (lua_Lexer*)t;
     tt_assert(lexersize == sizeof(lua_Lexer));
     ll->decpoint = 0;
-    return ttL_lexer_init(t, reader, ud);
+    return ttL_lexer_init(t);
 }
 
 static const char *ltostring(tt_Lexer *L, tt_TokenId tokenid) {
@@ -317,17 +317,17 @@ static const char *ltostring(tt_Lexer *L, tt_TokenId tokenid) {
   return ttL_tostring(L, tokenid);
 }
 
-static tt_LexerReg reg = {
-    "lua",
-    sizeof(lua_Lexer),
-    linitlexer,
-    NULL, /* lfreelexer */
-    llex,
-    ltostring,
+static ttL_Reg reg = {
+    TTL_LEXER(lua)
+    /* .init = */       linitlexer,
+    /* .free = */       NULL,
+    /* .lexer = */      llex,
+    /* .tostring = */   ltostring,
 };
 
-tt_LexerReg *tt_lexer_lua(void) {
-    return &reg;
+TT_LIBAPI int ttlexeropen_lua(tt_State *S) {
+    ttL_register(S, &reg);
+    return 1;
 }
 
-/* cc: flags+='-I../../include -I..' input="*.c ../tt*.c" */
+/* cc: flags+='-pedantic -I../src' input="*.c ../src/tt*.c" */
